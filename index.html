@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robert Tomkinson — Marketing Leadership</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=zodiak@100,200,300,400,500,600,700&f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FDFCFB;
+  --charcoal:#141414;
+  --teal:#2D5F6F;
+  --soft:#4A4A4A;
+  --line:rgba(20,20,20,.08);
+  --line-strong:rgba(20,20,20,.14);
+  --plate:#F1EFEC;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--charcoal);
+  font-family:'Satoshi',system-ui,-apple-system,sans-serif;
+  font-weight:500;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+.serif{font-family:'Zodiak',Georgia,'Times New Roman',serif}
+.wrap{max-width:1560px;margin:0 auto;padding:0 32px}
+@media(min-width:1024px){.wrap{padding:0 80px}}
+a{color:inherit;text-decoration:none}
+.skip{position:absolute;left:-9999px}
+
+/* ---------- typographic primitives ---------- */
+.eyebrow{
+  font-size:10px;letter-spacing:.42em;text-transform:uppercase;font-weight:700;
+  color:var(--soft);margin:0
+}
+.eyebrow.teal{color:var(--teal)}
+.ph{ /* placeholder token */
+  font-style:normal;font-weight:500;letter-spacing:.06em;
+}
+.ph-block{
+  display:block;border:1px dashed var(--line-strong);
+  color:#8b8985;background:linear-gradient(180deg,rgba(20,20,20,.012),rgba(20,20,20,0));
+  padding:.14em .42em;font-family:'Satoshi',sans-serif;font-weight:500;
+  font-size:.42em;letter-spacing:.16em;text-transform:uppercase;line-height:1.5;
+}
+.ph-inline{
+  display:inline-block;border:1px dashed var(--line-strong);color:#8b8985;
+  padding:.1em .4em;font-size:.4em;letter-spacing:.16em;text-transform:uppercase;
+}
+.ph-note{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9a9894;margin:0}
+
+.rule{height:1px;background:linear-gradient(to right,rgba(20,20,20,.12) 0%,rgba(20,20,20,0) 100%)}
+
+/* ---------- reveal motion ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+.reveal.active{opacity:1;transform:none}
+.d1{transition-delay:.09s}.d2{transition-delay:.18s}.d3{transition-delay:.27s}.d4{transition-delay:.36s}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1!important;transform:none!important;transition:none!important}
+  html{scroll-behavior:auto!important}
+}
+
+/* ---------- nav ---------- */
+header{
+  position:fixed;top:0;left:0;width:100%;z-index:60;
+  background:rgba(253,252,251,.94);backdrop-filter:blur(10px);
+  border-bottom:1px solid transparent;transition:border-color .4s ease, background .4s ease;
+}
+header.stuck{border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
+@media(min-width:1024px){.nav{padding:38px 0}}
+.logo{font-family:'Zodiak',serif;font-size:clamp(22px,2.4vw,30px);font-weight:400;letter-spacing:-.04em}
+.logo span{color:#b6b3ae}
+.navlinks{display:flex;align-items:center;gap:clamp(18px,3.2vw,64px)}
+.navlinks a{
+  position:relative;font-size:10px;letter-spacing:.4em;text-transform:uppercase;font-weight:700;
+  white-space:nowrap;color:var(--charcoal);transition:color .3s ease;
+}
+.navlinks a::after{
+  content:'';position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--teal);transition:width .35s ease;
+}
+.navlinks a:hover{color:var(--teal)}
+.navlinks a:hover::after{width:100%}
+.navlinks a.cta{color:var(--teal)}
+.nav-toggle{display:none;background:none;border:1px solid var(--line-strong);border-radius:999px;
+  font-size:9px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;padding:8px 14px;color:var(--charcoal)}
+@media(max-width:760px){
+  .navlinks{display:none}
+  .nav-toggle{display:block}
+  header.open .navlinks{
+    display:flex;flex-direction:column;align-items:flex-start;gap:20px;
+    position:absolute;left:0;top:100%;width:100%;background:var(--bg);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 32px 30px;
+  }
+  .navlinks a{font-size:11px}
+}
+
+/* ---------- sections ---------- */
+section{position:relative}
+.pad-xl{padding:110px 0}
+@media(min-width:1024px){.pad-xl{padding:190px 0}}
+
+/* ---------- hero ---------- */
+.hero{padding-top:150px;padding-bottom:80px}
+@media(min-width:1024px){.hero{padding-top:210px;padding-bottom:120px}}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center}
+@media(min-width:1024px){.hero-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px}}
+.hero-name{
+  font-family:'Zodiak',serif;font-weight:400;letter-spacing:-.045em;line-height:.85;
+  font-size:clamp(58px,11vw,168px);margin:0 0 clamp(28px,4vw,44px);
+}
+.hero-name em{font-style:italic;color:var(--teal);margin-left:.06em}
+.hero-kicker{font-size:10px;letter-spacing:.34em;text-transform:uppercase;font-weight:700;color:var(--teal);margin:0 0 18px}
+.hero-statement{
+  font-family:'Zodiak',serif;font-style:italic;font-weight:300;
+  font-size:clamp(20px,3.4vw,40px);line-height:1.15;letter-spacing:-.02em;
+  max-width:22ch;margin:0 0 30px;
+}
+.hero-intro{font-size:clamp(15px,1.15vw,18px);line-height:1.75;color:var(--soft);max-width:44ch;margin:0}
+.frame{position:relative;border:1px solid var(--line);background:var(--plate);overflow:hidden}
+.frame.v-portrait{aspect-ratio:3/4}
+.frame.v-wide{aspect-ratio:16/10}
+.frame.v-photo{aspect-ratio:4/3}
+.frame.v-square{aspect-ratio:1/1}
+.frame.v-tall{aspect-ratio:4/5}
+.frame::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.22),rgba(0,0,0,0) 55%);opacity:.6;pointer-events:none}
+.portrait{
+  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  background:
+    radial-gradient(78% 58% at 50% 30%,rgba(20,20,20,.10),rgba(20,20,20,0) 70%),
+    linear-gradient(160deg,#EFEDEA 0%,#E3E0DB 52%,#D5D2CC 100%);
+  filter:grayscale(1) contrast(1.05);
+}
+.portrait svg{width:58%;height:58%;max-width:340px;opacity:.5}
+.portrait .tag{
+  position:absolute;left:0;bottom:0;width:100%;padding:18px 20px;z-index:2;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:16px;
+}
+.portrait .tag span{
+  font-size:9px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:#fff;
+  border:1px dashed rgba(255,255,255,.55);background:rgba(0,0,0,.18);padding:6px 10px;
+  backdrop-filter:blur(4px);
+}
+.caption{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#8b8985;font-weight:700;margin:14px 0 0}
+
+/* ---------- breadth ---------- */
+.breadth{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:76px 0}
+@media(min-width:1024px){.breadth{padding:104px 0}}
+.breadth-list{
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;
+  gap:22px 46px;margin-top:48px;
+  font-family:'Zodiak',serif;font-weight:300;letter-spacing:-.02em;
+  font-size:clamp(21px,3.1vw,46px);line-height:1.15;
+}
+.breadth-list .alt{font-style:italic}
+.o100{opacity:1}.o80{opacity:.78}.o60{opacity:.58}.o42{opacity:.42}.o30{opacity:.3}
+.breadth-list .ph-inline{border-style:dashed}
+
+/* ---------- logos ---------- */
+.section-head{max-width:56rem}
+.section-title{
+  font-family:'Zodiak',serif;font-weight:400;letter-spacing:-.04em;line-height:.98;
+  font-size:clamp(40px,6.4vw,84px);margin:22px 0 0;
+}
+.section-title em{font-style:italic;color:var(--teal)}
+.logo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:64px}
+@media(min-width:760px){.logo-grid{grid-template-columns:repeat(3,1fr);gap:16px}}
+@media(min-width:1024px){.logo-grid{grid-template-columns:repeat(4,1fr);gap:22px;margin-top:84px}}
+.logo-cell{
+  height:112px;display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(20,20,20,.05);background:rgba(255,255,255,.5);
+  transition:border-color .7s ease,background .7s ease,transform .7s cubic-bezier(.16,1,.3,1);
+}
+@media(min-width:1024px){.logo-cell{height:168px}}
+.logo-cell:hover{border-color:rgba(45,95,111,.28);background:#fff;transform:translateY(-3px)}
+.logo-cell .ph-inline{font-size:10px;letter-spacing:.22em;padding:10px 12px;opacity:.75;transition:opacity .5s ease,border-color .5s ease,color .5s ease}
+.logo-cell:hover .ph-inline{opacity:1;color:var(--teal);border-color:rgba(45,95,111,.45)}
+
+/* ---------- stories (asymmetric editorial) ---------- */
+.stories{display:grid;grid-template-columns:repeat(12,1fr);gap:64px 32px;margin-top:72px}
+@media(min-width:1024px){.stories{gap:190px 32px;margin-top:110px}}
+.story{grid-column:span 12;display:flex;flex-direction:column;justify-content:center}
+.story .idx{font-size:10px;letter-spacing:.5em;text-transform:uppercase;font-weight:700;color:var(--teal);margin:0 0 20px}
+.story h3{
+  font-family:'Zodiak',serif;font-weight:400;letter-spacing:-.03em;line-height:1.08;
+  font-size:clamp(30px,4.2vw,58px);margin:0 0 24px;
+}
+.story h3 .ph-block{margin-bottom:10px}
+.story p{font-size:clamp(15px,1.15vw,18px);line-height:1.78;color:var(--soft);margin:0 0 26px;max-width:46ch}
+.story .link{
+  align-self:flex-start;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;
+  border-bottom:1px solid var(--charcoal);padding-bottom:5px;display:inline-flex;align-items:center;gap:14px;
+  transition:color .3s ease,border-color .3s ease;
+}
+.story .link:hover{color:var(--teal);border-color:var(--teal)}
+.story .link svg{transition:transform .35s ease}
+.story .link:hover svg{transform:translateX(8px)}
+@media(min-width:1024px){
+  .s1-text{grid-column:1/span 5}
+  .s1-media{grid-column:7/span 6}
+  .s2-media{grid-column:1/span 7}
+  .s2-text{grid-column:9/span 4}
+  .s3-text{grid-column:2/span 5}
+  .s3-media{grid-column:8/span 5}
+  .s4-media{grid-column:1/span 6}
+  .s4-text{grid-column:8/span 4}
+  .s5-text{grid-column:1/span 4}
+  .s5-media{grid-column:6/span 7}
+}
+@media(min-width:1024px){
+  .s2-media,.s4-media{margin-top:-6px}
+  .s4-text,.s5-text{padding-top:26px}
+}
+.quote-plate{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;z-index:2;
+}
+.quote-plate .inner{
+  max-width:24rem;padding:clamp(22px,3vw,48px);border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.06);backdrop-filter:blur(9px);
+}
+.quote-plate .inner p{
+  font-family:'Zodiak',serif;font-style:italic;font-weight:300;color:#fff;
+  font-size:clamp(17px,1.7vw,25px);line-height:1.28;margin:0 0 14px;
+}
+.quote-plate .inner span{font-size:9px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.55)}
+
+/* ---------- about (dark) ---------- */
+.about{background:var(--charcoal);color:var(--bg);padding:120px 0;overflow:hidden}
+@media(min-width:1024px){.about{padding:220px 0}}
+.about-grid{display:grid;grid-template-columns:1fr;gap:64px}
+@media(min-width:1024px){.about-grid{grid-template-columns:minmax(0,40fr) minmax(0,60fr);gap:120px;align-items:stretch}}
+.about-title{
+  font-family:'Zodiak',serif;font-weight:400;letter-spacing:-.05em;line-height:.9;
+  font-size:clamp(46px,8vw,116px);margin:0 0 40px;
+}
+.about-title em{font-style:italic;font-weight:300;color:var(--teal);display:block}
+.about-copy{display:flex;flex-direction:column;gap:26px;font-size:clamp(16px,1.3vw,20px);font-weight:300;line-height:1.8;color:rgba(253,252,251,.72)}
+.about-copy p{margin:0}
+.cols-duo{display:grid;grid-template-columns:1fr 1fr;gap:34px;padding-top:40px}
+.cols-duo h4{font-size:11px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:#fff;margin:0 0 18px}
+.cols-duo ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.cols-duo li{font-size:13px;font-weight:500;color:rgba(253,252,251,.55);line-height:1.5}
+.about-media{position:relative;display:flex;flex-direction:column;min-height:340px}
+.about-media .frame{flex:1;border-color:rgba(255,255,255,.08);min-height:340px;background:#1d1d1d}
+.about-media .frame::after{background:linear-gradient(to top,rgba(0,0,0,.35),rgba(0,0,0,0) 60%)}
+.about-media .portrait{background:radial-gradient(78% 58% at 50% 30%,rgba(255,255,255,.09),rgba(255,255,255,0) 70%),linear-gradient(160deg,#3a3a3a,#242424)}
+.about-media .portrait svg{opacity:.34}
+.ghost{position:absolute;top:44px;right:-40px;width:100%;height:100%;border:1px solid rgba(255,255,255,.06);pointer-events:none;display:none}
+@media(min-width:1024px){.ghost{display:block}}
+.teal-plate{
+  background:var(--teal);padding:clamp(28px,4vw,60px);max-width:26rem;box-shadow:0 40px 80px -30px rgba(0,0,0,.7);
+  position:relative;z-index:3;margin-top:-1px;
+}
+@media(min-width:900px){
+  .teal-plate{position:absolute;bottom:-56px;left:-12%;margin-top:0}
+}
+.teal-plate .lab{font-size:10px;letter-spacing:.34em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.6);margin:0 0 18px}
+.teal-plate p{font-family:'Zodiak',serif;font-style:italic;font-weight:400;font-size:clamp(18px,1.7vw,25px);line-height:1.25;color:#fff;margin:0 0 18px}
+.teal-plate .attr{font-size:10px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.7);margin:0}
+@media(min-width:900px){.about-media{padding-bottom:60px}}
+
+/* ---------- recommendations ---------- */
+.recs{margin-top:72px;display:flex;flex-direction:column}
+.rec{
+  display:grid;grid-template-columns:1fr;gap:22px;padding:46px 0;border-top:1px solid var(--line);
+}
+@media(min-width:900px){
+  .rec{grid-template-columns:minmax(0,170px) minmax(0,1fr);gap:56px;padding:64px 0}
+  .rec.tone .label{color:var(--teal)}
+}
+.rec:last-child{border-bottom:1px solid var(--line)}
+.rec .label{font-size:10px;letter-spacing:.34em;text-transform:uppercase;font-weight:700;color:#9a9894}
+.rec blockquote{
+  margin:0;font-family:'Zodiak',serif;font-style:italic;font-weight:300;
+  font-size:clamp(19px,2.2vw,32px);line-height:1.32;letter-spacing:-.015em;max-width:34ch;
+}
+.rec blockquote .ph-block{font-style:normal;margin:0;max-width:none;display:block;font-size:11px;letter-spacing:.18em;line-height:2.1}
+.rec .who{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--soft)}
+.rec .who .dot{width:16px;height:1px;background:var(--line-strong);display:inline-block;flex:none}
+.rec .who .sub{color:#9a9894;font-weight:500;letter-spacing:.14em}
+
+/* ---------- contact ---------- */
+.contact{padding:120px 0 70px}
+@media(min-width:1024px){.contact{padding:220px 0 90px}}
+.contact-head{text-align:center;max-width:1100px;margin:0 auto 96px}
+.contact-title{
+  font-family:'Zodiak',serif;font-weight:400;letter-spacing:-.05em;line-height:.94;
+  font-size:clamp(42px,8.4vw,140px);margin:26px 0 0;
+}
+.contact-title em{font-style:italic;color:var(--teal)}
+.contact-actions{display:flex;flex-direction:column;align-items:center;gap:34px;margin-top:64px}
+@media(min-width:760px){.contact-actions{flex-direction:row;justify-content:center;gap:clamp(30px,7vw,120px)}}
+.contact-actions a{
+  font-size:clamp(16px,1.7vw,24px);font-weight:300;padding-bottom:8px;border-bottom:1px solid rgba(20,20,20,.12);
+  transition:border-color .35s ease,color .35s ease;
+}
+.contact-actions a:hover{border-color:var(--teal);color:var(--teal)}
+.availability{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:44px}
+.chip{
+  font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--soft);
+  border:1px solid var(--line-strong);padding:9px 16px;background:rgba(255,255,255,.5);
+}
+
+/* ---------- footer ---------- */
+.footgrid{display:grid;grid-template-columns:1fr;gap:46px;padding-top:72px;border-top:1px solid var(--line)}
+@media(min-width:900px){.footgrid{grid-template-columns:minmax(0,2fr) repeat(2,minmax(0,1fr));gap:56px}}
+.footgrid h5{font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;margin:0 0 22px}
+.footgrid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
+.footgrid li{font-size:12px;font-weight:500;color:var(--soft);transition:color .3s ease}
+.footgrid li a:hover{color:var(--teal)}
+.foot-brand{font-family:'Zodiak',serif;font-size:clamp(28px,3vw,40px);letter-spacing:-.04em;display:block;margin-bottom:20px}
+.foot-brand span{color:#b6b3ae}
+.foot-note{font-size:13px;color:var(--soft);max-width:26rem;line-height:1.7;margin:0 0 26px}
+.socials{display:flex;gap:22px}
+.socials a{
+  font-size:10px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:#a7a4a0;
+  border-bottom:1px solid transparent;padding-bottom:4px;transition:color .3s ease,border-color .3s ease;
+}
+.socials a:hover{color:var(--charcoal);border-color:var(--line-strong)}
+.legal{
+  margin-top:80px;padding-top:34px;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px 30px;
+  font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:#9a9894;
+}
+.backtop{
+  position:fixed;right:22px;bottom:22px;z-index:70;
+  width:46px;height:46px;border-radius:999px;border:1px solid var(--line-strong);
+  background:rgba(253,252,251,.92);backdrop-filter:blur(8px);color:var(--charcoal);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  opacity:0;pointer-events:none;transition:opacity .35s ease,transform .35s ease;
+}
+.backtop.show{opacity:1;pointer-events:auto}
+.backtop:hover{transform:translateY(-3px)}
+</style>
+
+<style>
+/* ===== Repaired-site overrides, 2026-09-27 ===== */
+:root{
+  --bg:#FDFCFB;
+  --charcoal:#141414;
+  --teal:#2D5F6F;
+  --teal-dark:#2D5F6F;
+  --teal-on-dark:#78AFC0;
+  --soft:#4A4A4A;
+  --line:rgba(20,20,20,.08);
+  --line-strong:rgba(20,20,20,.14);
+}
+html{scroll-behavior:smooth}
+body{font-size:17px}
+.eyebrow{font-size:12px;letter-spacing:.30em}
+.navlinks a{font-size:13px;letter-spacing:.25em}
+.nav-toggle{font-size:12px}
+.hero{padding-top:150px;padding-bottom:76px}
+@media(min-width:1024px){.hero{padding-top:205px;padding-bottom:100px}}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:54px;align-items:center}
+@media(min-width:1024px){.hero-grid{grid-template-columns:minmax(0,7fr) minmax(320px,5fr);gap:76px}}
+.hero-name{margin-bottom:34px}
+.hero-kicker{font-size:13px;letter-spacing:.24em;margin-bottom:18px}
+.hero-statement{max-width:26ch;font-size:clamp(24px,3.4vw,42px);margin-bottom:26px}
+.hero-intro{font-size:clamp(17px,1.15vw,19px);line-height:1.68;max-width:58ch;color:var(--soft)}
+.portrait{width:100%;height:100%;display:block;object-fit:cover;object-position:center top;filter:grayscale(1) contrast(1.04)}
+.frame.v-portrait{aspect-ratio:3/4}
+.cred{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:44px 0 50px}
+.cred-label{display:flex;align-items:center;gap:14px;margin:0}
+.cred-label .bar{width:36px;height:1px;background:var(--teal);display:inline-block}
+.logo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:30px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media(min-width:760px){.logo-grid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:1024px){.logo-grid{grid-template-columns:repeat(8,1fr);margin-top:34px}}
+.logo-cell{height:82px;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:transparent}
+.logo-cell:hover{transform:none;background:rgba(255,255,255,.45)}
+.logo-cell .name{font-family:'Zodiak',serif;font-size:clamp(16px,1.4vw,21px);font-weight:400}
+.pad{padding:105px 0}
+@media(min-width:1024px){.pad{padding:150px 0}}
+.explorer-head{display:grid;grid-template-columns:1fr;gap:24px;align-items:end}
+@media(min-width:900px){.explorer-head{grid-template-columns:minmax(0,1fr) minmax(340px,.8fr);gap:72px}}
+.section-title{font-size:clamp(42px,5.8vw,76px);margin-top:18px}
+.explorer-intro{font-size:17px;line-height:1.7;color:var(--soft);max-width:46ch;margin:0}
+.tabs{margin-top:60px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tabs-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:760px){.tabs-row{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.tab{
+  appearance:none;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:transparent;color:var(--charcoal);padding:18px 12px;text-align:left;cursor:pointer;
+  font-family:'Satoshi',sans-serif;font-size:14px;font-weight:700;line-height:1.25;
+  transition:color .25s ease,background .25s ease;
+}
+@media(min-width:760px){.tab:nth-child(n+6){border-bottom:0}}
+.tab[aria-selected="true"]{color:var(--teal);background:rgba(45,95,111,.045)}
+.tab:hover{color:var(--teal)}
+.panels{padding-top:44px}
+.panel{display:none}
+.panel.on{display:block}
+.panel-bar{margin-bottom:28px}
+.panel-bar .eyebrow{font-size:14px!important;letter-spacing:.08em!important;text-transform:none!important}
+.ex-grid{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}
+@media(min-width:850px){.ex-grid{grid-template-columns:repeat(3,1fr)}}
+.ex{padding:28px 0;border-bottom:1px solid var(--line)}
+@media(min-width:850px){
+  .ex{padding:30px 30px 10px 0;border-bottom:0;border-right:1px solid var(--line);margin-right:30px}
+  .ex:last-child{border-right:0;margin-right:0;padding-right:0}
+}
+.ex .no{display:block;font-size:14px;font-weight:700;color:var(--teal);margin-bottom:14px}
+.ex p{font-size:17px;line-height:1.65;color:var(--soft);margin:0}
+.about{background:var(--charcoal);color:var(--bg);padding:110px 0}
+@media(min-width:1024px){.about{padding:160px 0}}
+.about-grid{display:grid;grid-template-columns:1fr;gap:72px}
+@media(min-width:1024px){.about-grid{grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);gap:110px;align-items:center}}
+.about .eyebrow.teal,.about-quote .lab{color:var(--teal-on-dark)}
+.about-title{font-size:clamp(48px,7vw,96px);margin:16px 0 38px}
+.about-title em{display:inline;color:var(--teal-on-dark)}
+.about-copy{font-size:clamp(17px,1.15vw,19px);line-height:1.72;color:rgba(253,252,251,.82);gap:22px}
+.about-meta{margin-top:38px}
+.about-meta .mark{font-family:'Zodiak',serif;font-size:28px;color:rgba(253,252,251,.5)}
+.about-quote{border-left:1px solid rgba(255,255,255,.18);padding:8px 0 8px 42px}
+.about-quote .lab{font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;margin:0 0 28px}
+.about-quote blockquote{
+  margin:0 0 28px;font-family:'Zodiak',serif;font-style:italic;font-weight:300;
+  font-size:clamp(22px,2.2vw,30px);line-height:1.4;color:var(--bg);
+}
+.about-quote .who,.rec-row .who{font-size:15px;font-weight:700;line-height:1.45}
+.about-quote .sub,.rec-row .sub{display:block;font-size:14px;font-weight:500;color:rgba(253,252,251,.68);margin-top:4px}
+.recs-strip{margin-top:56px;border-top:1px solid var(--line)}
+.rec-row{display:grid;grid-template-columns:42px 1fr;gap:22px;padding:38px 0;border-bottom:1px solid var(--line)}
+@media(min-width:900px){.rec-row{grid-template-columns:56px minmax(0,1fr) minmax(220px,.35fr);gap:42px;align-items:start;padding:46px 0}}
+.rec-row>.no{font-size:13px;font-weight:700;color:var(--teal)}
+.rec-row blockquote{margin:0;font-family:'Zodiak',serif;font-style:italic;font-weight:300;font-size:clamp(20px,2vw,29px);line-height:1.4;max-width:42ch}
+.rec-row .who{grid-column:2;color:var(--charcoal)}
+@media(min-width:900px){.rec-row .who{grid-column:3}}
+.rec-row .sub{color:var(--soft)}
+.contact{padding:110px 0 54px}
+@media(min-width:1024px){.contact{padding:150px 0 64px}}
+.contact-grid{display:grid;grid-template-columns:1fr;gap:54px}
+@media(min-width:900px){.contact-grid{grid-template-columns:1fr 1fr;gap:100px;align-items:end}}
+.contact-title{font-size:clamp(52px,7vw,100px);margin:14px 0 20px}
+.contact-sub{font-size:18px;line-height:1.65;color:var(--soft);max-width:40ch;margin:0}
+.contact-actions{display:flex;flex-direction:column;align-items:stretch;gap:0;margin:0}
+.contact-actions a{display:flex;justify-content:space-between;gap:24px;font-size:17px;font-weight:500;padding:20px 0;border-bottom:1px solid var(--line)}
+.contact-actions .go{font-size:13px;text-transform:uppercase;letter-spacing:.18em;color:var(--teal);font-weight:700}
+.footgrid{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:26px;margin-top:100px;padding-top:34px;border-top:1px solid var(--line)}
+.foot-brand{font-size:30px;margin:0}
+.foot-note{font-size:14px;line-height:1.5;margin:0;color:var(--soft);max-width:none}
+.foot-links{display:flex;gap:24px}
+.foot-links a{font-size:13px;font-weight:700}
+.legal{margin-top:28px;padding-top:24px;font-size:12px;letter-spacing:.12em}
+@media(max-width:700px){
+  .footgrid{grid-template-columns:1fr;gap:14px}
+  .foot-links{margin-top:8px}
+}
+</style>
+
+</head>
+
+<body>
+<a class="skip" href="#experience">Skip to content</a>
+<header id="site-header">
+  <div class="wrap">
+    <div class="nav">
+      <a href="#top" class="logo" aria-label="Robert Tomkinson, home">RT<span>.</span></a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="navlinks">Menu</button>
+      <nav class="navlinks" id="navlinks" aria-label="Primary">
+        <a href="#experience">Experience</a>
+        <a href="#about">About</a>
+        <a href="resume.pdf" download>Résumé</a>
+        <a href="#contact" class="cta">Contact</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<main id="top">
+<section class="hero wrap" aria-labelledby="hero-title">
+  <div class="hero-grid">
+    <div class="reveal active">
+      <h1 class="hero-name" id="hero-title">Robert<br><em>Tomkinson</em></h1>
+      <p class="hero-kicker">Marketing Executive &amp; Strategic Advisor</p>
+      <p class="hero-statement">Build brands. Shape products. Grow businesses.</p>
+      <p class="hero-intro">It starts with understanding the customer. I use research, data and experimentation to uncover what people need, what they value and what gets in their way, then turn those insights into stronger brands, better products and profitable growth.<br><br>Across B2C, B2B and marketplace businesses, from early-stage ventures to billion-dollar platforms.</p>
+    </div>
+    <div class="reveal active d1">
+      <figure class="frame v-portrait" style="margin:0">
+        <img class="portrait" src="./assets/rtomkinson-headshot.jpg" alt="Portrait of Robert Tomkinson">
+      </figure>
+    </div>
+  </div>
+</section>
+
+  <!-- ===== CREDIBILITY BAND ===== -->
+  <section class="cred" aria-labelledby="cred-title">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="cred-label"><span class="bar" aria-hidden="true"></span><span class="eyebrow" id="cred-title">Selected Companies</span></p>
+        <div class="logo-grid">
+          <div class="logo-cell"><span class="name">eBay</span></div>
+          <div class="logo-cell"><span class="name">EA</span></div>
+          <div class="logo-cell"><span class="name">Yelp</span></div>
+          <div class="logo-cell"><span class="name">TouchTunes</span></div>
+          <div class="logo-cell"><span class="name">Arccos</span></div>
+          <div class="logo-cell"><span class="name">CoPilot</span></div>
+          <div class="logo-cell"><span class="name">Puls</span></div>
+          <div class="logo-cell"><span class="name">Ingenio</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE EXPLORER ===== -->
+  <section class="pad" id="experience" aria-labelledby="exp-title">
+    <div class="wrap">
+      <div class="explorer-head reveal">
+        <div>
+          <p class="eyebrow teal">Experience</p>
+          <h2 class="section-title" id="exp-title">Explore my <em>experience</em></h2>
+        </div>
+        <p class="explorer-intro">Customer insight runs through all of it: research, behavioral data, experimentation and Voice of Customer. Select an area to explore.</p>
+      </div>
+
+      <div class="tabs reveal d1">
+        <div class="tabs-row" id="tabs-row" role="tablist" aria-label="Areas of experience"></div>
+      </div>
+
+      <div class="panels reveal d2" id="panels"></div>
+    </div>
+  </section>
+
+  <!-- ===== HOW I WORK ===== -->
+  <section class="about" id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="reveal">
+          <p class="eyebrow teal">About</p>
+          <h2 class="about-title" id="about-title">How I <em>work</em></h2>
+          <div class="about-copy">
+            <p><strong>Ready to scale, reposition, or rethink how marketing delivers growth?</strong> I&rsquo;m at my best when the challenge doesn&rsquo;t fit neatly into one marketing box. I can go as broad and as deep as needed. I&rsquo;ve worn most of the hats: brand, product marketing, growth, lifecycle, research, analytics, partnerships and GTM.</p>
+            <p>I&rsquo;ve built, realigned and scaled teams; launched and repositioned brands and products; and grown established businesses while staying accountable for unit economics, ROI and the priorities of Finance. I&rsquo;m equally comfortable investing to accelerate growth or finding smarter ways to deliver more with less.</p>
+            <p>Curiosity usually starts with the customer. I thrive on combining research, behavioral data and experimentation to understand what people really need, what they value and why they behave as they do. Those insights become the foundation for product, positioning, brand and growth decisions.</p>
+            <p>I thrive on collaboration, particularly where Marketing, Product, Finance and Operations need to solve something together. I set a high bar while trying to lead with compassion. And I&rsquo;m energized by change, particularly how AI is reshaping both products and the practice of marketing.</p>
+          </div>
+          <div class="about-meta">
+            <span class="mark">RT.</span>
+          </div>
+        </div>
+
+        <div class="reveal d1">
+          <div class="about-quote">
+            <p class="lab">Recommendation</p>
+            <blockquote>&ldquo;Under his leadership, the quality of the collaboration between our two teams improved significantly, and he championed the changes needed to deliver real business impact with all members of the executive leadership team.&rdquo;</blockquote>
+            <p class="who">Quentin Gallet<span class="sub">Former CTO, TouchTunes</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===== RECOMMENDATIONS ===== -->
+  <section class="pad" id="recommendations" aria-labelledby="recs-title">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow teal">Recommendations</p>
+        <h2 class="section-title" id="recs-title">In their <em>words</em></h2>
+      </div>
+      <div class="recs-strip">
+        <div class="rec-row reveal">
+          <span class="no">01</span>
+          <blockquote>&ldquo;He rebranded TouchTunes for a new, younger audience while retaining our existing user base, and he launched a new app that migrated 2.5 million monthly active users, all while maintaining revenue and improving App Store reviews.&rdquo;</blockquote>
+          <span class="who">Shachar Scott<span class="sub">CMO · Board Director · ex-Meta, Bumble, Snap, Apple</span></span>
+        </div>
+        <div class="rec-row reveal">
+          <span class="no">02</span>
+          <blockquote>&ldquo;Robert is a thoughtful, strategic, and data-driven marketing leader who consistently challenged our team to connect great ideas back to the customer and measurable impact.&rdquo;</blockquote>
+          <span class="who">Stephanie Falvo Liang<span class="sub">Director, Integrated &amp; Brand Marketing, TouchTunes</span></span>
+        </div>
+        <div class="rec-row reveal">
+          <span class="no">03</span>
+          <blockquote>&ldquo;Robert excels at leading growing teams and executing on massive, complex marketing programs — at Playfish he was adept at balancing both the strategy and tactics necessary for several massive game launches.&rdquo;</blockquote>
+          <span class="who">Bertram Chan<span class="sub">Director of Product, Meta · AI Analytics &amp; Experimentation</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===== CONTACT ===== -->
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="reveal">
+          <p class="eyebrow teal">Contact</p>
+          <h2 class="contact-title" id="contact-title">Let&rsquo;s talk.</h2>
+          <p class="contact-sub">Have an interesting marketing, product or growth challenge? I&rsquo;d be glad to hear about it.</p>
+        </div>
+        <div class="reveal d1">
+          <div class="contact-actions">
+            <a href="mailto:rtomkinson@gmail.com"><span>rtomkinson@gmail.com</span><span class="go">Email</span></a>
+            <a href="https://www.linkedin.com/in/rtomkinson" target="_blank" rel="noopener"><span>LinkedIn</span><span class="go">Profile</span></a>
+            <a href="resume.pdf" download><span>Résumé</span><span class="go">Download</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footgrid reveal">
+        <a href="#top" class="foot-brand">RT<span>.</span></a>
+        <p class="foot-note">Robert Tomkinson · Marketing Executive &amp; Strategic Advisor</p>
+        <div class="foot-links">
+          <a href="https://www.linkedin.com/in/rtomkinson" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="resume.pdf" download>Résumé</a>
+        </div>
+      </div>
+
+      <div class="legal">
+        <span>&copy; <span id="year">2026</span> Robert Tomkinson</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<button class="backtop" id="backtop" aria-label="Back to top">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 14V2M3 7l5-5 5 5"/></svg>
+</button>
+
+<script>
+(function(){
+  /* ---- Experience explorer ---- */
+  var AREAS = ["B2C","B2B","Brand","Product Marketing","GTM","Growth","Trust","AI & MarTech","Marketplaces","Partnerships & Deals"];
+  /* Supplied content. Each proof point: company, story, optional metric. */
+  var DATA = {
+    "B2C": [
+      ["TouchTunes","Launched a new consumer mobile app that grew to 2.5MM monthly active users in year one, while increasing ARPU."],
+      ["CoPilot","Grew users 3× by diversifying acquisition across performance TV, TikTok, Meta and SEM, then drove +50% user growth at reduced CPA."],
+      ["EA","Launched 10 Facebook games including The Sims Social, with 100MM downloads, supported by large-scale performance marketing and monetization."],
+      ["Arccos","Led integrated consumer GTM across AI-powered hardware, software and subscriptions, spanning product marketing, PR, CRM, retail, partnerships, paid media and e-commerce."]
+    ],
+    "B2B": [
+      ["Yelp","Grew a $30MM SMB acquisition and retention program 3× while improving CPA, LTV and ROI."],
+      ["TouchTunes","Led marketing for a two-sided entertainment network serving both consumers and venue owners/operators."],
+      ["eBay","Built the eBay Motors Australia dealer proposition across direct sales, bulk-upload software, third-party integrations and subscription pricing."],
+      ["Series X Capital","Advise frontier-technology businesses on positioning and commercial strategy across enterprise and telecom markets."]
+    ],
+    "Brand": [
+      ["TouchTunes","Repositioned the brand for a new generation of consumers, aligning brand, product experience and GTM with renewed growth."],
+      ["Puls","Rebranded CellSavers to Puls in 90 days while expanding the business from one to five lines of business."],
+      ["Yelp","Led a research-based post-COVID repositioning addressing customer misperceptions while shifting focus toward higher-growth categories and geographies."],
+      ["CoPilot","Repositioned the company as an AI-assisted car-shopping platform, making transparency and unbiased information central to the proposition."]
+    ],
+    "Product Marketing": [
+      ["Arccos","Led product marketing for AI-powered hardware and software, using on-course research and Voice of Customer insights to influence roadmap, UX, positioning, pricing and commercialization."],
+      ["CoPilot","Built the product marketing function from the ground up, defining personas, Jobs-to-be-Done and roadmap priorities through research and behavioral analytics."],
+      ["eBay","Championed Best Offer, combining buyer and seller research with behavioral-economics simulation before launching a new transaction format for high-value purchases."],
+      ["EA","Drove product GTM for social and mobile versions of major franchises including The Sims, Madden and FIFA."]
+    ],
+    "GTM": [
+      ["Arccos","Led GTM for new AI-enabled hardware and software across product marketing, PR, social, CRM, retail, partnerships, paid media and e-commerce."],
+      ["eBay","Launched eBay Motors Australia, spanning market-entry strategy, positioning, advertising, dealer sales, software integrations and pricing."],
+      ["EA","Led integrated launches for games and live services, developing repeatable playbooks for acquisition, engagement and retention."],
+      ["Puls","Partnered with Product and Operations to test and launch new cities and service categories."]
+    ],
+    "Growth": [
+      ["Yelp","Grew a $30MM SMB acquisition and retention program 3× while improving CPA, LTV and ROI."],
+      ["CoPilot","Grew users 3× through channel diversification, then drove +50% user growth at reduced CPA."],
+      ["TouchTunes","Built paid acquisition from zero to multi-$MM at positive ROI while modernizing CRM, experimentation and attribution."],
+      ["Ingenio","Drove 2× growth, including scaling SEM 6× at 50% CPA, alongside SEO, social and CRO."]
+    ],
+    "Trust": [
+      ["eBay","Partnered with Trust & Safety to combat rampant wire-transfer fraud in eBay Motors, using detection tools, education, policy and product changes to rapidly eliminate visible fraud from the category."],
+      ["eBay","Introduced risk-reduction mechanisms including PayPal deposits and bidder filters, and championed Best Offer as an alternative to walk-away auction bids."],
+      ["CoPilot","Research found that describing CoPilot as “AI-assisted” increased consumer trust rather than skepticism, shaping company-wide messaging."],
+      ["Yelp","Addressed trust barriers around review authenticity, onboarding and SMB pricing through coordinated education across CRM, customer support, sales and B2B/B2C campaigns."]
+    ],
+    "AI & MarTech": [
+      ["Arccos","Led marketing for AI-driven products while building an AI-native marketing operating model spanning experimentation, creative development, segmentation and decision-making."],
+      ["CoPilot","Used consumer research to position an AI-assisted product around transparency, comprehensiveness and trust."],
+      ["TouchTunes","Built a modern marketing technology stack supporting personalized journeys, lifecycle marketing, experimentation and attribution."],
+      ["Series X Capital","Advise on positioning and GTM for frontier technologies including AI infrastructure."]
+    ],
+    "Marketplaces": [
+      ["eBay","Worked across marketplace efficiency, Motors, new ventures and marketing, balancing the needs of buyers, sellers, dealers, partners and Trust & Safety."],
+      ["Yelp","Worked across consumers, SMB advertisers, Product, Sales and Operations to commercialize marketplace capabilities and new local-services categories."],
+      ["TouchTunes","Led marketing for a two-sided entertainment network connecting consumers with venues and operators."],
+      ["Puls / Ingenio","Led marketing and growth for service and expert marketplaces, including geographic expansion, new categories and marketplace partnerships."]
+    ],
+    "Partnerships & Deals": [
+      ["eBay","Negotiated $1MM+/year multi-year distribution agreements with HP, MSN, Yahoo and CNET, combining fixed, volume and performance economics with exclusivity and SLA terms."],
+      ["Ingenio","Negotiated multi-year, multi-million-dollar traffic-supply contracts and led diligence and commercial structuring around a $10MMs acquisition."],
+      ["Yelp","Jointly scoped, sold and delivered a $1MM Visa SMB partnership, then recommended ending it when pilot economics did not justify reinvestment."],
+      ["CoPilot / EA","Negotiated embedded insurance and warranty agreements at CoPilot and custom in-game brand integrations worth up to approximately $1MM per game at EA."]
+    ]
+  };
+
+  function proofPoints(area){
+    var items = (DATA[area] || []).slice(0,3);
+    var out = '';
+    for(var k = 0; k < items.length; k++){
+      out +=
+        '<article class="ex">' +
+          '<span class="no">' + items[k][0] + '</span>' +
+          '<p>' + items[k][1] + '</p>' +
+        '</article>';
+    }
+    return out;
+  }
+
+  var tabsRow = document.getElementById('tabs-row');
+  var panels  = document.getElementById('panels');
+  var active  = 0;
+
+  AREAS.forEach(function(area, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'tab';
+    b.id = 'tab-' + i;
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-controls','panel-' + i);
+    b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    b.textContent = area;
+    b.addEventListener('click', function(){ select(i); });
+    tabsRow.appendChild(b);
+
+    var p = document.createElement('div');
+    p.className = 'panel';
+    p.id = 'panel-' + i;
+    p.setAttribute('role','tabpanel');
+    p.setAttribute('aria-labelledby','tab-' + i);
+    p.innerHTML =
+      '<div class="panel-bar">' +
+        '<p class="eyebrow" style="letter-spacing:.08em;text-transform:none;font-size:14px;font-weight:900">' + area + '</p>' +
+      '</div>' +
+      '<div class="ex-grid">' + proofPoints(area) + '</div>';
+    panels.appendChild(p);
+
+  });
+
+  var tabEls   = tabsRow.querySelectorAll('.tab');
+  var panelEls = panels.querySelectorAll('.panel');
+
+  function select(i){
+    active = i;
+    for(var n = 0; n < tabEls.length; n++){
+      tabEls[n].setAttribute('aria-selected', n === i ? 'true' : 'false');
+      panelEls[n].classList.toggle('on', n === i);
+    }
+  }
+
+  /* keyboard navigation across the selector */
+  tabsRow.addEventListener('keydown', function(e){
+    var step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if(!step) return;
+    e.preventDefault();
+    var next = (active + step + tabEls.length) % tabEls.length;
+    select(next);
+    tabEls[next].focus();
+  });
+
+  select(0);
+
+  /* ---- Reveal ---- */
+  var els = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target); }
+      });
+    },{threshold:0.12});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('active'); });
+  }
+
+  /* ---- Chrome ---- */
+  var header  = document.getElementById('site-header');
+  var backtop = document.getElementById('backtop');
+
+  function onScroll(){
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    header.classList.toggle('stuck', y > 16);
+    backtop.classList.toggle('show', y > 700);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  backtop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+  var toggle = document.getElementById('nav-toggle');
+  toggle.addEventListener('click', function(){
+    var open = header.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if(!id || id.length < 2) return;
+      var t = document.querySelector(id);
+      if(!t) return;
+      e.preventDefault();
+      header.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+      var y = t.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop) - (header.offsetHeight - 4);
+      window.scrollTo({top: Math.max(y,0), behavior:'smooth'});
+    });
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
