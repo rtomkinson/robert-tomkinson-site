@@ -8,9 +8,9 @@
 <link href="https://api.fontshare.com/v2/css?f[]=zodiak@100,200,300,400,500,600,700&f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#FDFCFB;
-  --charcoal:#141414;
-  --teal:#2D5F6F;
+  --bg:#FAF8F4;
+  --charcoal:#171B1C;
+  --teal:#215B66;
   --soft:#4A4A4A;
   --line:rgba(20,20,20,.08);
   --line-strong:rgba(20,20,20,.14);
@@ -68,14 +68,13 @@ a{color:inherit;text-decoration:none}
 /* ---------- nav ---------- */
 header{
   position:fixed;top:0;left:0;width:100%;z-index:60;
-  background:rgba(253,252,251,.94);backdrop-filter:blur(10px);
+  background:rgba(250,248,244,.94);backdrop-filter:blur(10px);
   border-bottom:1px solid transparent;transition:border-color .4s ease, background .4s ease;
 }
 header.stuck{border-bottom-color:var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
 @media(min-width:1024px){.nav{padding:38px 0}}
-.logo{font-family:'Zodiak',serif;font-size:clamp(22px,2.4vw,30px);font-weight:400;letter-spacing:-.04em}
-.logo span{color:#b6b3ae}
+.logo{font-family:'Zodiak',serif;font-size:clamp(18px,1.6vw,23px);font-weight:400;letter-spacing:-.035em;line-height:1.2;white-space:nowrap}
 .navlinks{display:flex;align-items:center;gap:clamp(18px,3.2vw,64px)}
 .navlinks a{
   position:relative;font-size:10px;letter-spacing:.4em;text-transform:uppercase;font-weight:700;
@@ -90,6 +89,8 @@ header.stuck{border-bottom-color:var(--line)}
 .nav-toggle{display:none;background:none;border:1px solid var(--line-strong);border-radius:999px;
   font-size:9px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;padding:8px 14px;color:var(--charcoal)}
 @media(max-width:760px){
+  .logo{display:none}
+  .nav-toggle{margin-left:auto}
   .navlinks{display:none}
   .nav-toggle{display:block}
   header.open .navlinks{
@@ -112,7 +113,7 @@ section{position:relative}
 @media(min-width:1024px){.hero-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px}}
 .hero-name{
   font-family:'Zodiak',serif;font-weight:400;letter-spacing:-.045em;line-height:.85;
-  font-size:clamp(58px,11vw,168px);margin:0 0 clamp(28px,4vw,44px);
+  font-size:clamp(56px,10.6vw,162px);margin:0 0 clamp(28px,4vw,44px);
 }
 .hero-name em{font-style:italic;color:var(--teal);margin-left:.06em}
 .hero-kicker{font-size:10px;letter-spacing:.34em;text-transform:uppercase;font-weight:700;color:var(--teal);margin:0 0 18px}
@@ -341,11 +342,11 @@ section{position:relative}
 <style>
 /* ===== Repaired-site overrides, 2026-09-27 ===== */
 :root{
-  --bg:#FDFCFB;
-  --charcoal:#141414;
-  --teal:#2D5F6F;
-  --teal-dark:#2D5F6F;
-  --teal-on-dark:#78AFC0;
+  --bg:#FAF8F4;
+  --charcoal:#171B1C;
+  --teal:#215B66;
+  --teal-dark:#215B66;
+  --teal-on-dark:#8BC8CF;
   --soft:#4A4A4A;
   --line:rgba(20,20,20,.08);
   --line-strong:rgba(20,20,20,.14);
@@ -360,11 +361,27 @@ body{font-size:17px}
 .hero-grid{display:grid;grid-template-columns:1fr;gap:54px;align-items:center}
 @media(min-width:1024px){.hero-grid{grid-template-columns:minmax(0,7fr) minmax(320px,5fr);gap:76px}}
 .hero-name{margin-bottom:34px}
+@media(min-width:1024px){
+  .hero-grid > div:first-child{container-type:inline-size}
+  .hero-name{
+    font-size:clamp(70px,8.2vw,125px);
+    font-size:min(clamp(70px,8.2vw,125px),17.4cqi);
+    line-height:.94;margin-bottom:30px;
+  }
+}
 .hero-kicker{font-size:13px;letter-spacing:.24em;margin-bottom:18px}
 .hero-statement{max-width:26ch;font-size:clamp(24px,3.4vw,42px);margin-bottom:26px}
 .hero-intro{font-size:clamp(17px,1.15vw,19px);line-height:1.68;max-width:58ch;color:var(--soft)}
-.portrait{width:100%;height:100%;display:block;object-fit:cover;object-position:center top;filter:grayscale(1) contrast(1.04)}
+.portrait{width:100%;height:100%;display:block;object-fit:cover;object-position:50% 35%;filter:grayscale(1) contrast(1.02)}
 .frame.v-portrait{aspect-ratio:3/4}
+.hero .frame.v-portrait{border:0;background:var(--bg)}
+/* Plain gradients work in Chrome and Safari; the center stays fully clear. */
+.hero .frame.v-portrait::after{
+  opacity:1;
+  background:
+    linear-gradient(to right,var(--bg),transparent 4%,transparent 96%,var(--bg)),
+    linear-gradient(to bottom,var(--bg),transparent 3%,transparent 94%,var(--bg));
+}
 .cred{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:44px 0 50px}
 .cred-label{display:flex;align-items:center;gap:14px;margin:0}
 .cred-label .bar{width:36px;height:1px;background:var(--teal);display:inline-block}
@@ -396,7 +413,7 @@ body{font-size:17px}
 .panel{display:none}
 .panel.on{display:block}
 .panel-bar{margin-bottom:28px}
-.panel-bar .eyebrow{font-size:14px!important;letter-spacing:.08em!important;text-transform:none!important}
+.panel-bar .eyebrow{font-size:17px!important;letter-spacing:.08em!important;text-transform:none!important}
 .ex-grid{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}
 @media(min-width:850px){.ex-grid{grid-template-columns:repeat(3,1fr)}}
 .ex{padding:28px 0;border-bottom:1px solid var(--line)}
@@ -404,7 +421,7 @@ body{font-size:17px}
   .ex{padding:30px 30px 10px 0;border-bottom:0;border-right:1px solid var(--line);margin-right:30px}
   .ex:last-child{border-right:0;margin-right:0;padding-right:0}
 }
-.ex .no{display:block;font-size:14px;font-weight:700;color:var(--teal);margin-bottom:14px}
+.ex .no{display:block;font-size:17px;font-weight:700;color:var(--teal);margin-bottom:14px}
 .ex p{font-size:17px;line-height:1.65;color:var(--soft);margin:0}
 .about{background:var(--charcoal);color:var(--bg);padding:110px 0}
 @media(min-width:1024px){.about{padding:160px 0}}
@@ -413,7 +430,7 @@ body{font-size:17px}
 .about .eyebrow.teal,.about-quote .lab{color:var(--teal-on-dark)}
 .about-title{font-size:clamp(48px,7vw,96px);margin:16px 0 38px}
 .about-title em{display:inline;color:var(--teal-on-dark)}
-.about-copy{font-size:clamp(17px,1.15vw,19px);line-height:1.72;color:rgba(253,252,251,.82);gap:22px}
+.about-copy{font-size:clamp(17px,1.15vw,19px);line-height:1.72;color:rgba(250,248,244,.88);gap:22px}
 .about-meta{margin-top:38px}
 .about-meta .mark{font-family:'Zodiak',serif;font-size:28px;color:rgba(253,252,251,.5)}
 .about-quote{border-left:1px solid rgba(255,255,255,.18);padding:8px 0 8px 42px}
@@ -423,7 +440,7 @@ body{font-size:17px}
   font-size:clamp(22px,2.2vw,30px);line-height:1.4;color:var(--bg);
 }
 .about-quote .who,.rec-row .who{font-size:15px;font-weight:700;line-height:1.45}
-.about-quote .sub,.rec-row .sub{display:block;font-size:14px;font-weight:500;color:rgba(253,252,251,.68);margin-top:4px}
+.about-quote .sub,.rec-row .sub{display:block;font-size:14px;font-weight:500;color:rgba(250,248,244,.78);margin-top:4px}
 .recs-strip{margin-top:56px;border-top:1px solid var(--line)}
 .rec-row{display:grid;grid-template-columns:42px 1fr;gap:22px;padding:38px 0;border-bottom:1px solid var(--line)}
 @media(min-width:900px){.rec-row{grid-template-columns:56px minmax(0,1fr) minmax(220px,.35fr);gap:42px;align-items:start;padding:46px 0}}
@@ -453,6 +470,53 @@ body{font-size:17px}
 }
 </style>
 
+
+<style>
+/* Comparison variant: visual overrides only. */
+:root{
+  --bg:#FFFFFF;
+  --teal:#2055A6;
+  --teal-dark:#174383;
+  --teal-on-dark:#9FC5FF;
+}
+header{background:rgba(255,255,255,.94)}
+.backtop{background:rgba(255,255,255,.94)}
+.hero .portrait{filter:none}
+.hero .frame.v-portrait::after{content:none;display:none}
+.hero .frame.v-portrait,.hero .portrait{
+  filter:none;backdrop-filter:none;mask:none;-webkit-mask:none;
+  border-radius:0;box-shadow:none;
+}
+.credentials{margin:0 auto;padding-top:30px;padding-bottom:30px;border-top:1px solid var(--line);font-size:14px;line-height:1.6;color:var(--soft);text-align:center}
+/* Company tiles are descriptive, not interactive links. */
+.logo-cell{cursor:default;transition:background .25s ease}
+.logo-cell .name{font-size:clamp(22px,1.85vw,28px);font-weight:600;color:#3B4147}
+.logo-cell:hover{background:#DCE7F6}
+.logo-cell:hover .name{color:#2055A6}
+.tab{font-size:17px;text-align:center;display:flex;align-items:center;justify-content:center;min-height:72px;padding:18px 10px}
+.tab[aria-selected="true"]{background:rgba(32,85,166,.09);box-shadow:inset 0 -3px 0 var(--teal)}
+.hero{padding-top:135px;padding-bottom:56px}
+.cred{padding:32px 0 36px}
+.pad{padding:78px 0}
+.about{padding:82px 0}
+.contact{padding:82px 0 44px}
+.tabs{margin-top:44px}
+.recs-strip{margin-top:42px}
+.footgrid{margin-top:72px}
+.about-copy{color:rgba(255,255,255,.88)}
+.about-quote blockquote{font-size:clamp(21px,2vw,27px);line-height:1.45}
+.rec-row blockquote{font-size:clamp(19px,1.75vw,25px);line-height:1.45}
+.about-quote .who,.rec-row .who{font-size:16px;line-height:1.5}
+.about-quote .sub,.rec-row .sub{font-size:14px;line-height:1.55}
+.about-quote .sub{color:rgba(255,255,255,.78)}
+@media(min-width:1024px){
+  .hero{padding-top:180px;padding-bottom:72px}
+  .pad{padding:112px 0}
+  .about{padding:120px 0}
+  .contact{padding:112px 0 52px}
+}
+</style>
+
 </head>
 
 <body>
@@ -460,12 +524,12 @@ body{font-size:17px}
 <header id="site-header">
   <div class="wrap">
     <div class="nav">
-      <a href="#top" class="logo" aria-label="Robert Tomkinson, home">RT<span>.</span></a>
+      <a href="#top" class="logo" aria-label="Robert Tomkinson, home">Robert Tomkinson</a>
       <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="navlinks">Menu</button>
       <nav class="navlinks" id="navlinks" aria-label="Primary">
         <a href="#experience">Experience</a>
         <a href="#about">About</a>
-        <a href="resume.pdf" download>Résumé</a>
+        <a href="resume.pdf" download>Resume</a>
         <a href="#contact" class="cta">Contact</a>
       </nav>
     </div>
@@ -534,10 +598,10 @@ body{font-size:17px}
           <p class="eyebrow teal">About</p>
           <h2 class="about-title" id="about-title">How I <em>work</em></h2>
           <div class="about-copy">
-            <p><strong>Ready to scale, reposition, or rethink how marketing delivers growth?</strong> I&rsquo;m at my best when the challenge doesn&rsquo;t fit neatly into one marketing box. I can go as broad and as deep as needed. I&rsquo;ve worn most of the hats: brand, product marketing, growth, lifecycle, research, analytics, partnerships and GTM.</p>
-            <p>I&rsquo;ve built, realigned and scaled teams; launched and repositioned brands and products; and grown established businesses while staying accountable for unit economics, ROI and the priorities of Finance. I&rsquo;m equally comfortable investing to accelerate growth or finding smarter ways to deliver more with less.</p>
-            <p>Curiosity usually starts with the customer. I thrive on combining research, behavioral data and experimentation to understand what people really need, what they value and why they behave as they do. Those insights become the foundation for product, positioning, brand and growth decisions.</p>
-            <p>I thrive on collaboration, particularly where Marketing, Product, Finance and Operations need to solve something together. I set a high bar while trying to lead with compassion. And I&rsquo;m energized by change, particularly how AI is reshaping both products and the practice of marketing.</p>
+            <p><strong>Ready to scale, reposition, or transform how marketing delivers growth? That’s what I do.</strong></p>
+            <p>I’ve led change and delivered results for disruptive companies at all stages, in the US and around the world. I’ve built teams, launched and repositioned products and brands, scaled growth and improved how marketing operates. From beta tests and rollouts to boardrooms, I combine strategic perspective with hands-on execution as a pragmatic senior leader.</p>
+            <p>Curiosity drives my approach. I draw on research, analysis and experimentation to understand customers in depth, then turn those insights into clear decisions and action. I’m equally comfortable investing to accelerate growth or finding smarter, more efficient ways to operate, while staying accountable for unit economics and ROI. I partner across Marketing, Product, Sales, Engineering, Finance and Operations to put those decisions into practice.</p>
+            <p>I thrive on change. My career has been shaped by moments when technology changes markets: the web, mobile, social and now AI. I move between strategy and detailed execution, using AI and technology to help teams accomplish more in a flatter organization. I set a high bar and aim to lead with compassion. I’d be glad to discuss where I could make an impact in your organization.</p>
           </div>
           <div class="about-meta">
             <span class="mark">RT.</span>
@@ -580,6 +644,7 @@ body{font-size:17px}
       </div>
     </div>
   </section>
+  <p class="credentials wrap">BA, Oxford · MBA, Stanford Graduate School of Business</p>
   <!-- ===== CONTACT ===== -->
   <section class="contact" id="contact" aria-labelledby="contact-title">
     <div class="wrap">
@@ -593,7 +658,7 @@ body{font-size:17px}
           <div class="contact-actions">
             <a href="mailto:rtomkinson@gmail.com"><span>rtomkinson@gmail.com</span><span class="go">Email</span></a>
             <a href="https://www.linkedin.com/in/rtomkinson" target="_blank" rel="noopener"><span>LinkedIn</span><span class="go">Profile</span></a>
-            <a href="resume.pdf" download><span>Résumé</span><span class="go">Download</span></a>
+            <a href="resume.pdf" download><span>Resume</span><span class="go">Download</span></a>
           </div>
         </div>
       </div>
@@ -603,7 +668,7 @@ body{font-size:17px}
         <p class="foot-note">Robert Tomkinson · Marketing Executive &amp; Strategic Advisor</p>
         <div class="foot-links">
           <a href="https://www.linkedin.com/in/rtomkinson" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="resume.pdf" download>Résumé</a>
+          <a href="resume.pdf" download>Resume</a>
         </div>
       </div>
 
